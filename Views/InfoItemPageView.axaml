@@ -1,0 +1,22 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:SWA_Example.ViewModels"
+             
+             x:Class="SWA_Example.Views.InfoItemPageView"
+             x:DataType="vm:InfoItemPageViewModel">
+
+    <Design.DataContext>
+        <vm:InfoItemPageViewModel/>
+    </Design.DataContext>
+    
+    <StackPanel Orientation="Vertical">
+        <Label Content="Элемент"
+               Target="{Binding ElementName=Input}"/>
+        <TextBox x:Name="Input"
+                 Text="{Binding Item}"/>
+        <Button Content="Сохранить"
+                Command="{Binding Save}"/>
+        <Button Content="Очистить"
+                Command="{Binding Clear}"/>
+    </StackPanel>
+</UserControl>

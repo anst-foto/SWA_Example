@@ -1,0 +1,13 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:SWA_Example.ViewModels"
+             
+             x:Class="SWA_Example.Views.MainPageView"
+             x:DataType="vm:MainPageViewModel">
+    <Design.DataContext>
+        <vm:MainPageViewModel/>
+    </Design.DataContext>
+    
+    <ListBox ItemsSource="{Binding Items}"
+             SelectedItem="{Binding Item}"/>
+</UserControl>
