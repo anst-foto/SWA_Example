@@ -8,6 +8,8 @@ namespace SWA_Example;
 
 public partial class App : Application
 {
+    public static string? Item;
+    
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
@@ -25,5 +27,4 @@ public partial class App : Application
 
         base.OnFrameworkInitializationCompleted();
     }
-
 }

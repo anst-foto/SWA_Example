@@ -2,6 +2,6 @@
 
 namespace SWA_Example.ViewModels;
 
-public class ViewModelBase : ReactiveObject
+public abstract class ViewModelBase : ReactiveObject
 {
 }
