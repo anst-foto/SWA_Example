@@ -1,15 +1,10 @@
-﻿using ReactiveUI;
+﻿using ReactiveUI.Fody.Helpers;
 
 namespace SWA_Example.ViewModels;
 
 public class InfoItemPageViewModel : PageViewModelBase
 {
-    private string? _item;
-    public string? Item
-    {
-        get => _item; 
-        set => this.RaiseAndSetIfChanged(ref _item, value);
-    }
+    [Reactive] public string? Item { get; set; }
     
     public InfoItemPageViewModel() : base()
     {

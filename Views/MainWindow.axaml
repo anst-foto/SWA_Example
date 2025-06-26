@@ -16,8 +16,12 @@
     
     <Window.Resources>
         <DataTemplate x:Key="TemplateItemOfListOfPages"
-                      DataType="vm:PageViewModelBase">
-            <TextBlock Text="{Binding Title}"/>
+                      DataType="vm:TogglePaneItemTemplate">
+            <StackPanel Spacing="15" 
+                        Orientation="Horizontal">
+                <PathIcon Data="{Binding Icon}"/>
+                <TextBlock Text="{Binding Title}"/>
+            </StackPanel>
         </DataTemplate>
     </Window.Resources>
 
@@ -25,25 +29,20 @@
         <TextBlock Text="{Binding SelectedPage.Title}"
                    DockPanel.Dock="Top"/>
         
-        <SplitView DisplayMode="CompactOverlay"
+        <SplitView DisplayMode="CompactInline"
                    CompactPaneLength="36"
-                   OpenPaneLength="200"
+                   OpenPaneLength="275"
                    PanePlacement="Left">
             <SplitView.Pane>
                 <Grid RowDefinitions="Auto, *">
                     <ToggleButton Grid.Row="0"
                                   IsChecked="{Binding $parent[SplitView].IsPaneOpen}">
                         <Panel>
-                            <TextBlock Text="Развернуть">
-                                <TextBlock.IsVisible>
-                                    <Binding RelativeSource="{RelativeSource AncestorType={x:Type ToggleButton}}"
-                                             Path="!IsChecked" />
-                                </TextBlock.IsVisible>
-                            </TextBlock>
-                            <TextBlock Text="Свернуть"
-                                       IsVisible="{Binding 
-                                                    RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}},
-                                                    Path=IsChecked}" />
+                                <PathIcon Data="{StaticResource Open}"
+                                          IsVisible="{Binding RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}, Path=!IsChecked}"/>
+                                
+                                <PathIcon Data="{StaticResource Close}"
+                                          IsVisible="{Binding RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}, Path=IsChecked}"/>
                         </Panel>
                     </ToggleButton>
 
@@ -55,7 +54,12 @@
             </SplitView.Pane>
 
             <SplitView.Content>
-                <TransitioningContentControl Content="{Binding SelectedPage}" />
+                <TransitioningContentControl Content="{Binding SelectedPage.ViewModel}">
+                    <TransitioningContentControl.PageTransition>
+                        <!--<PageSlide Orientation="Horizontal" Duration="0:0:1"/>-->
+                        <CrossFade Duration="0:0:1" />
+                    </TransitioningContentControl.PageTransition>
+                </TransitioningContentControl>
             </SplitView.Content>
         </SplitView>
     </DockPanel>
